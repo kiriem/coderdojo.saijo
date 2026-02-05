@@ -1,0 +1,47 @@
+<header class="sticky top-0 z-50 w-full border-b border-solid border-[#e7f3ea] dark:border-[#1a2e1e] bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-3">
+  <div class="flex items-center justify-between whitespace-nowrap">
+    <a href="index.html" class="flex items-center gap-3 text-[#0d1b11] dark:text-white">
+      <img src="images/coderdojo-saijo.png" alt="CoderDojo 西条" class="h-10 w-auto">
+      <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">CoderDojo 西条 @広島大学</h2>
+    </a>
+    <div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+      <nav class="flex items-center gap-6">
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#home">ホーム</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#about">Dojoについて</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="news.html">ニュース</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#learning">学ぶこと</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#team">メンバー</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#access">アクセス</a>
+      </nav>
+      <a href="index.html#contact" class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-full h-10 px-6 bg-primary text-white text-sm font-bold leading-normal hover:scale-105 transition-transform">
+        <span>参加する</span>
+      </a>
+    </div>
+    <!-- Mobile menu button -->
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-[#0d1b11] dark:text-white">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <nav id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-[#e7f3ea] dark:border-[#1a2e1e] mt-3">
+    <div class="flex flex-col gap-3">
+      <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="index.html#home">ホーム</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="index.html#about">Dojoについて</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="news.html">ニュース</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="index.html#learning">学ぶこと</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="index.html#team">メンバー</a>
+      <a class="text-sm font-medium hover:text-primary transition-colors py-2" href="index.html#access">アクセス</a>
+      <a href="index.html#contact" class="mt-2 flex items-center justify-center rounded-full h-10 px-6 bg-primary text-white text-sm font-bold">
+        参加する
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu?.classList.toggle('hidden');
+  });
+</script>

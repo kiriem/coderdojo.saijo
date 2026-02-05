@@ -1,0 +1,14 @@
+# CoderDojo 西条 イベントデータ
+#
+# 次回開催情報を更新する場合は、nextEvent の内容を書き換えてください。
+# status: open (受付中) | closed (受付終了) | cancelled (中止)
+
+nextEvent:
+  number: 1
+  date: "2026-02-15"
+  dayOfWeek: "日"
+  startTime: "10:00"
+  endTime: "12:00"
+  location: "広島大学東広島キャンパス 教育学部"
+  registrationUrl: "https://coderdojo-saijo.connpass.com/"
+  status: open

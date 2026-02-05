@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="light" lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ニュース詳細 | CoderDojo 西条</title>
+  <meta name="description" content="CoderDojo西条のニュース詳細ページ">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#005e3c",
+            "background-light": "#f6f8f6",
+            "background-dark": "#102215",
+          },
+          fontFamily: {
+            "display": ["Lexend", "Noto Sans JP", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Markdown content styling */
+    .prose h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #0d1b11;
+    }
+    .prose h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #0d1b11;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e7f3ea;
+    }
+    .prose h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: #0d1b11;
+    }
+    .prose p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+    .prose ul, .prose ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .prose li {
+      margin-bottom: 0.5rem;
+    }
+    .prose ul li {
+      list-style-type: disc;
+    }
+    .prose ol li {
+      list-style-type: decimal;
+    }
+    .prose strong {
+      font-weight: 700;
+    }
+    .prose a {
+      color: #005e3c;
+      text-decoration: underline;
+    }
+    .prose a:hover {
+      opacity: 0.8;
+    }
+    .prose code {
+      background-color: #e7f3ea;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+    }
+    .prose pre {
+      background-color: #1a2e1e;
+      color: #e7f3ea;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+    .prose pre code {
+      background-color: transparent;
+      padding: 0;
+    }
+    .prose blockquote {
+      border-left: 4px solid #005e3c;
+      padding-left: 1rem;
+      margin: 1rem 0;
+      color: #4c6a51;
+      font-style: italic;
+    }
+
+    /* Dark mode for prose */
+    .dark .prose h1,
+    .dark .prose h2,
+    .dark .prose h3 {
+      color: white;
+    }
+    .dark .prose h2 {
+      border-bottom-color: #2a4d34;
+    }
+    .dark .prose code {
+      background-color: #1a2e1e;
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b11] dark:text-white transition-colors duration-300">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <main class="flex flex-col items-center min-h-screen">
+
+    <!-- Article Content -->
+    <section class="w-full py-12 flex justify-center">
+      <div class="max-w-[960px] w-full px-6">
+        <div id="news-detail-container">
+          <!-- 動的に読み込まれます -->
+          <div class="flex justify-center py-12">
+            <div class="animate-pulse text-[#4c6a51]">読み込み中...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/yaml-loader.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/news.js"></script>
+  <script src="js/events.js"></script>
+
+  <script>
+    // ページ読み込み時の初期化
+    document.addEventListener('DOMContentLoaded', async () => {
+      // コンポーネント読み込み
+      await loadAllComponents();
+
+      // ニュース詳細を表示
+      await renderNewsDetail('news-detail-container');
+    });
+  </script>
+
+</body>
+</html>
