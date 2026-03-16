@@ -2,9 +2,9 @@
 # 画像を追加する場合は、images/slide/ に画像を配置し、以下にパスを追加してください
 images:
   - images/slide/000.jpg
-  - images/slide/001.jpg
-  - images/slide/002.jpg
-  - images/slide/003.jpg
-  - images/slide/004.jpg
-  - images/slide/005.jpg
+  - images/slide/001.JPG
+  - images/slide/002.JPG
+  - images/slide/003.JPG
+  - images/slide/004.JPG
+  - images/slide/005.JPG
   - images/slide/006.jpg
