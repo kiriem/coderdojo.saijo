@@ -76,8 +76,11 @@
               CoderDojoは、子どものための非営利のプログラミングクラブです。7歳から17歳までの子どもたちが、自由にプログラミングを楽しんでいます。
             </p>
           </div>
+          <!-- Next Event Card -->
+          <div id="next-event-container" class="w-full max-w-[400px]">
+            <!-- 動的に読み込まれます -->
+          </div>
           <div class="flex flex-wrap gap-4">
-
             <a href="#about"
               class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-full h-14 px-8 border-2 border-primary text-[#0d1b11] dark:text-white text-lg font-bold hover:bg-primary/10 transition-all">
               詳しく見る
@@ -85,18 +88,20 @@
           </div>
         </div>
         <div class="order-1 lg:order-2">
-          <div class="relative">
-            <div
-              class="w-full aspect-square md:aspect-video lg:aspect-square bg-center bg-no-repeat bg-cover rounded-xl shadow-2xl overflow-hidden"
-              style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCogUDPH87i-xH5rTskcKx7YhA6qtCPzroWwRpJdQI-GNw7qnF-pM0dpVoHt41wi8HMuLOqHB5DKsqTlUVPUBBc-LkOiCuguWpoIoERNjF_SArbYiqMRznpc8tt0T-94LC8M23rIvYVSExP3-5sENRe3TWxGphOPFatemB18Js-l1i7S-8ZA8Tgu0Kb4mKsddYPg9s0INe4bDyYX-OmBgbNoHWjLSFP9KtCKYp-nzwvmEIz3nhbpTIkdqD3B0_h3Zkm75xONm_FhY');"
-              role="img" aria-label="Children happily collaborating on laptop computers in a bright classroom">
+          <!-- Slideshow -->
+          <div class="relative group">
+            <div id="slideshow" class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
+              <!-- 画像はJavaScriptで動的に読み込み -->
             </div>
-            <!-- Next Event Floating Card -->
-            <div class="absolute -bottom-6 -left-6 md:bottom-10 md:-left-10 p-2 w-full max-w-[340px]">
-              <div id="next-event-container">
-                <!-- 動的に読み込まれます -->
-              </div>
-            </div>
+            <!-- Dot Indicators -->
+            <div id="slideshow-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10"></div>
+            <!-- Navigation Arrows -->
+            <button id="slideshow-prev" class="hidden absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-[#0d1b11] flex items-center justify-center transition-all shadow-lg opacity-0 group-hover:opacity-100">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button id="slideshow-next" class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-[#0d1b11] flex items-center justify-center transition-all shadow-lg opacity-0 group-hover:opacity-100">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
           </div>
         </div>
       </div>
@@ -452,6 +457,86 @@
   <script src="js/events.js"></script>
 
   <script>
+    // スライドショー初期化
+    async function initSlideshow() {
+      const container = document.getElementById('slideshow');
+      const dotsContainer = document.getElementById('slideshow-dots');
+      const prevBtn = document.getElementById('slideshow-prev');
+      const nextBtn = document.getElementById('slideshow-next');
+
+      // YAMLから画像リストを取得
+      let images = [];
+      try {
+        const data = await loadYaml('data/slides.yml');
+        images = data.images || [];
+      } catch (e) {
+        console.error('Failed to load slideshow images:', e);
+      }
+
+      // 画像がなければデフォルト画像を表示
+      if (images.length === 0) {
+        container.innerHTML = `<img src="https://inpw.jp/imgUploader/c/efdf949e2bfb07eafd93f5c4eb17af1f.jpg" alt="CoderDojo" class="w-full h-full object-cover">`;
+        return;
+      }
+
+      // スライドを生成
+      images.forEach((src, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide absolute inset-0 opacity-0 transition-opacity duration-1000';
+        slide.innerHTML = `<img src="${src}" alt="活動風景 ${index + 1}" class="w-full h-full object-cover">`;
+        container.appendChild(slide);
+      });
+
+      const slides = container.querySelectorAll('.slide');
+      let currentIndex = 0;
+      let autoPlayInterval;
+
+      // ドットを生成
+      slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-colors';
+        dot.setAttribute('aria-label', `スライド ${index + 1}`);
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = dotsContainer.querySelectorAll('button');
+
+      // ナビゲーションボタン表示（2枚以上の場合）
+      if (slides.length > 1) {
+        prevBtn.classList.remove('hidden');
+        nextBtn.classList.remove('hidden');
+        prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+        nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+      }
+
+      function goToSlide(index) {
+        slides[currentIndex].classList.remove('opacity-100');
+        slides[currentIndex].classList.add('opacity-0');
+        dots[currentIndex]?.classList.remove('bg-white');
+        dots[currentIndex]?.classList.add('bg-white/40');
+
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides[currentIndex].classList.remove('opacity-0');
+        slides[currentIndex].classList.add('opacity-100');
+        dots[currentIndex]?.classList.remove('bg-white/40');
+        dots[currentIndex]?.classList.add('bg-white');
+
+        resetAutoPlay();
+      }
+
+      function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        if (slides.length > 1) {
+          autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), 5000);
+        }
+      }
+
+      // 初期表示
+      goToSlide(0);
+    }
+
     // ページ読み込み時の初期化
     document.addEventListener('DOMContentLoaded', async () => {
       // コンポーネント読み込み
@@ -465,6 +550,9 @@
 
       // ヒーローボタンのイベント設定
       await updateHeroButtons();
+
+      // スライドショー初期化
+      await initSlideshow();
 
       // 「次回の開催日を確認」ボタン
       document.querySelector('[data-action="check-next-event"]')?.addEventListener('click', () => {

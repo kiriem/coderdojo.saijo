@@ -3,6 +3,28 @@
 # 新しい記事を追加する場合は、以下のフォーマットで先頭に追加してください。
 # category: notice (お知らせ) | report (レポート) | event (イベント)
 
+- id: "2026-03-01"
+  date: "2025-03-01"
+  category: report
+  title: "第一回 CoderDojo 西条を開催しました！"
+  summary: "第一回 CoderDojo 西条を開催しました！当日の様子をレポートします。"
+  content: |
+
+    <img src="https://inpw.jp/imgUploader/c/3382ac167fae8406a7a965471a7084a3.jpg" style="width: 100%; height: auto; display: block; margin: 0 auto;" alt="">
+
+    2026年2月15日に、広島大学東広島キャンパスで第一回 CoderDojo 西条 を開催しました！当日は10名の子どもたちが参加し、プログラミングを楽しみました。
+
+    ## ワークショップの様子
+    初めて参加する子どもたちのために、Scratchを使ったプログラミングワークショップを開催しました。子どもたちは自分のキャラクターを作成し、簡単なゲームを作ることができました。
+
+    すでに別の CoderDojo でプログラミング経験があった子どもたちは、自分の作品づくりをすすめました。とてもおもしろい作品ばかりで、これからが楽しみです。
+
+    <img src="https://inpw.jp/imgUploader/c/90a4880493297c92d8f0a3cc7ec36052.jpg" style="width: 100%; height: auto; display: block; margin: 0 auto;" alt="">
+
+    今後も定期的に開催していく予定ですので、ぜひご参加ください！
+
+  externalLink: ""
+
 - id: "2026-02-15"
   date: "2026-02-15"
   category: notice
