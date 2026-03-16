@@ -76,8 +76,11 @@
               CoderDojoは、子どものための非営利のプログラミングクラブです。7歳から17歳までの子どもたちが、自由にプログラミングを楽しんでいます。
             </p>
           </div>
+          <!-- Next Event Card -->
+          <div id="next-event-container" class="w-full max-w-[400px]">
+            <!-- 動的に読み込まれます -->
+          </div>
           <div class="flex flex-wrap gap-4">
-
             <a href="#about"
               class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-full h-14 px-8 border-2 border-primary text-[#0d1b11] dark:text-white text-lg font-bold hover:bg-primary/10 transition-all">
               詳しく見る
@@ -85,39 +88,22 @@
           </div>
         </div>
         <div class="order-1 lg:order-2">
-          <div class="relative">
-            <div
-              class="w-full aspect-square md:aspect-video lg:aspect-square bg-center bg-no-repeat bg-cover rounded-xl shadow-2xl overflow-hidden"
-              style="background-image: url('https://inpw.jp/imgUploader/c/efdf949e2bfb07eafd93f5c4eb17af1f.jpg');"
-              role="img" aria-label="Children happily collaborating on laptop computers in a bright classroom">
+          <!-- Slideshow -->
+          <div class="relative group">
+            <div id="slideshow" class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
+              <!-- 画像はJavaScriptで動的に読み込み -->
             </div>
-            <!-- Next Event Floating Card -->
-            <div class="absolute -bottom-6 -left-6 md:bottom-10 md:-left-10 p-2 w-full max-w-[340px]">
-              <div id="next-event-container">
-                <!-- 動的に読み込まれます -->
-              </div>
-            </div>
+            <!-- Dot Indicators -->
+            <div id="slideshow-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10"></div>
+            <!-- Navigation Arrows -->
+            <button id="slideshow-prev" class="hidden absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-[#0d1b11] flex items-center justify-center transition-all shadow-lg opacity-0 group-hover:opacity-100">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button id="slideshow-next" class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-[#0d1b11] flex items-center justify-center transition-all shadow-lg opacity-0 group-hover:opacity-100">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Gallery Slideshow Section -->
-    <section class="w-full bg-[#0d1b11]" id="gallery">
-      <div class="relative w-full max-w-[1400px] mx-auto overflow-hidden">
-        <!-- Slideshow Container -->
-        <div id="slideshow" class="relative w-full aspect-[21/9] md:aspect-[3/1]">
-          <!-- 画像はJavaScriptで動的に読み込み -->
-        </div>
-        <!-- Dot Indicators -->
-        <div id="slideshow-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10"></div>
-        <!-- Navigation Arrows -->
-        <button id="slideshow-prev" class="hidden absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-colors">
-          <span class="material-symbols-outlined">chevron_left</span>
-        </button>
-        <button id="slideshow-next" class="hidden absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-colors">
-          <span class="material-symbols-outlined">chevron_right</span>
-        </button>
       </div>
     </section>
 
@@ -472,14 +458,36 @@
 
   <script>
     // スライドショー初期化
-    function initSlideshow() {
-      const slides = document.querySelectorAll('#slideshow .slide');
+    async function initSlideshow() {
+      const container = document.getElementById('slideshow');
       const dotsContainer = document.getElementById('slideshow-dots');
       const prevBtn = document.getElementById('slideshow-prev');
       const nextBtn = document.getElementById('slideshow-next');
 
-      if (slides.length === 0) return;
+      // YAMLから画像リストを取得
+      let images = [];
+      try {
+        const data = await loadYaml('data/slides.yml');
+        images = data.images || [];
+      } catch (e) {
+        console.error('Failed to load slideshow images:', e);
+      }
 
+      // 画像がなければデフォルト画像を表示
+      if (images.length === 0) {
+        container.innerHTML = `<img src="https://inpw.jp/imgUploader/c/efdf949e2bfb07eafd93f5c4eb17af1f.jpg" alt="CoderDojo" class="w-full h-full object-cover">`;
+        return;
+      }
+
+      // スライドを生成
+      images.forEach((src, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide absolute inset-0 opacity-0 transition-opacity duration-1000';
+        slide.innerHTML = `<img src="${src}" alt="活動風景 ${index + 1}" class="w-full h-full object-cover">`;
+        container.appendChild(slide);
+      });
+
+      const slides = container.querySelectorAll('.slide');
       let currentIndex = 0;
       let autoPlayInterval;
 
@@ -544,7 +552,7 @@
       await updateHeroButtons();
 
       // スライドショー初期化
-      initSlideshow();
+      await initSlideshow();
 
       // 「次回の開催日を確認」ボタン
       document.querySelector('[data-action="check-next-event"]')?.addEventListener('click', () => {
