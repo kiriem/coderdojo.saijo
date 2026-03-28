@@ -3,11 +3,31 @@
 # 新しい記事を追加する場合は、以下のフォーマットで先頭に追加してください。
 # category: notice (お知らせ) | report (レポート) | event (イベント)
 
+
+- id: "2026-03-28"
+  date: "2025-03-28"
+  category: report
+  title: "第2回 CoderDojo 西条を開催しました！"
+  summary: "第2回 CoderDojo 西条を開催しました！当日の様子をレポートします。"
+  content: |
+    2026年3月28日に、第2回 CoderDojo 西条 @広島大学 を開催しました！当日は6名の子どもたちが参加し、プログラミングを楽しみました。
+
+    <img src="https://pbs.twimg.com/media/HEeCAwdaQAAnKZa?format=jpg&name=4096x4096">
+
+    ## ワークショップの様子
+    今回は micro:bit が大流行！みんなでフィジカルプログラミングを楽しみました。
+
+    <img src="https://pbs.twimg.com/media/HEeCAwbaMAAuU5A?format=jpg&name=4096x4096">
+    <img src="https://pbs.twimg.com/media/HEeCAwba4AAvutk?format=jpg&name=4096x4096">
+
+    次回は4月29日（水・祝）に開催予定です。ぜひご参加ください！
+  externalLink: ""
+
 - id: "2026-03-01"
   date: "2025-03-01"
   category: report
-  title: "第一回 CoderDojo 西条を開催しました！"
-  summary: "第一回 CoderDojo 西条を開催しました！当日の様子をレポートします。"
+  title: "第1回 CoderDojo 西条を開催しました！"
+  summary: "第1回 CoderDojo 西条を開催しました！当日の様子をレポートします。"
   content: |
 
     <img src="https://inpw.jp/imgUploader/c/3382ac167fae8406a7a965471a7084a3.jpg" style="width: 100%; height: auto; display: block; margin: 0 auto;" alt="">
