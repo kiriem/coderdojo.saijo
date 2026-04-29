@@ -10,7 +10,8 @@
  */
 async function loadYaml(path) {
   try {
-    const response = await fetch(path);
+    const separator = path.includes('?') ? '&' : '?';
+    const response = await fetch(path + separator + 't=' + Date.now());
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
