@@ -201,9 +201,46 @@ async function renderNewsDetail(containerId) {
           </a>
         </div>
       ` : ''}
+
+      <!-- SNS シェアボタン -->
+      <div class="mt-10 pt-8 border-t border-[#e7f3ea] dark:border-[#1a2e1e]">
+        <p class="text-sm font-bold text-[#4c6a51] dark:text-gray-400 mb-4">この記事をシェア</p>
+        <div class="flex gap-3">
+          <a id="share-twitter" href="#" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white rounded-full text-sm font-bold hover:opacity-80 transition-opacity">
+            <svg class="size-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"></path></svg>
+            ポスト
+          </a>
+          <a id="share-facebook" href="#" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1877F2] text-white rounded-full text-sm font-bold hover:opacity-80 transition-opacity">
+            <svg class="size-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+            シェア
+          </a>
+        </div>
+      </div>
     </article>
   `;
 
-  // ページタイトルを更新
-  document.title = `${article.title} | CoderDojo 西条`;
+  // ページタイトル・OGPメタタグを更新
+  const pageTitle = `${article.title} | CoderDojo 西条`;
+  document.title = pageTitle;
+
+  const pageUrl = window.location.href;
+  const ogpImage = new URL('images/ogp.png', window.location.origin + window.location.pathname.replace(/[^/]*$/, '')).href;
+
+  // OGPメタタグを更新
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', pageTitle);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', article.summary);
+  document.querySelector('meta[property="og:image"]')?.setAttribute('content', ogpImage);
+  document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', pageTitle);
+  document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', article.summary);
+  document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', ogpImage);
+  document.querySelector('meta[name="description"]')?.setAttribute('content', article.summary);
+
+  // シェアボタンのURLを設定
+  const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(pageUrl)}`;
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+
+  document.getElementById('share-twitter').href = twitterUrl;
+  document.getElementById('share-facebook').href = facebookUrl;
 }
