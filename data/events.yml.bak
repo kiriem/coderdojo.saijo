@@ -6,9 +6,9 @@
 nextEvent:
   number: 5
   date: "2026-07-12"
-  dayOfWeek: 日
-  startTime: 10:00
-  endTime: 12:00
-  location: 広島大学東広島キャンパス 教育学部
-  registrationUrl: https://coderdojo-saijo.doorkeeper.jp/events/197712
-  status: open
+  dayOfWeek: "日"
+  startTime: "10:00"
+  endTime: "12:00"
+  location: "広島大学東広島キャンパス 教育学部"
+  registrationUrl: "https://coderdojo-saijo.doorkeeper.jp/events/197712"
+  status: "open"
