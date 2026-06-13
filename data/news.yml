@@ -3,6 +3,26 @@
 # 新しい記事を追加する場合は、以下のフォーマットで先頭に追加してください。
 # category: notice (お知らせ) | report (レポート) | event (イベント)
 
+- id: "2026-06-13"
+  date: "2026-06-13"
+  category: report
+  title: 第4回 CoderDojo 西条を開催しました！
+  summary: 第4回 CoderDojo 西条を開催しました！
+  content: |
+    第4回 CoderDojo 西条 @広島大学 を開催しました！
+    今日は人数少なめだったので、みんなでもくもく作業をしました。
+
+    <img src="data/images/20260613-032014-4dcebce3.jpg">
+    大人が子どもに聞いたり
+
+    <img src="data/images/20260613-032034-2dc44516.jpg">
+    自分で作ったアプリについて相談したり
+
+    <img src="data/images/20260613-032102-efe0a82e.jpg">
+    MacBook Air で iPad の SldeCar 機能を使いこなしたりなど、CoderDojo らしい時間を過ごしました。
+
+    次回は7月12日（日）10:00-12:00 です！皆様のご参加をお待ちしております。
+  externalLink: ""
 - id: "2026-04-29"
   date: "2026-04-29"
   category: report
