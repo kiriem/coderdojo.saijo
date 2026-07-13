@@ -40,22 +40,14 @@ function createCategoryBadge(category) {
 }
 
 /**
- * ニュースアイテムの HTML を生成（一覧用）
+ * 記事のサムネイル画像URLを取得
+ * 本文中の最初の <img> を採用し、なければ OGP 画像にフォールバック
  * @param {Object} news - ニュースオブジェクト
- * @returns {string} HTML 文字列
+ * @returns {string} 画像URL
  */
-function createNewsListItem(news) {
-  const link = news.externalLink || `news-detail.html?id=${news.id}`;
-  const target = news.externalLink ? ' target="_blank" rel="noopener"' : '';
-
-  return `
-    <div class="flex items-center gap-4 p-4 rounded-xl hover:bg-background-light dark:hover:bg-background-dark transition-colors border-b border-[#e7f3ea] dark:border-[#1a2e1e]">
-      <span class="text-sm font-medium text-[#4c6a51] whitespace-nowrap">${formatDate(news.date)}</span>
-      ${createCategoryBadge(news.category)}
-      <a class="text-sm font-bold flex-1 truncate hover:text-primary" href="${link}"${target}>${news.title}</a>
-      <span class="material-symbols-outlined text-sm">chevron_right</span>
-    </div>
-  `;
+function getThumbnail(news) {
+  const match = (news.content || '').match(/<img[^>]+src=["']([^"']+)["']/i);
+  return match ? match[1] : 'images/ogp.png';
 }
 
 /**
@@ -68,13 +60,18 @@ function createNewsCard(news) {
   const target = news.externalLink ? ' target="_blank" rel="noopener"' : '';
 
   return `
-    <a href="${link}"${target} class="block p-6 bg-white dark:bg-[#1a2e1e] rounded-xl shadow-sm hover:shadow-md transition-all border border-[#e7f3ea] dark:border-[#2a4d34] group" data-category="${news.category}">
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-sm text-[#4c6a51]">${formatDate(news.date)}</span>
-        ${createCategoryBadge(news.category)}
+    <a href="${link}"${target} class="block bg-white dark:bg-[#1a2e1e] rounded-xl shadow-sm hover:shadow-md transition-all border border-[#e7f3ea] dark:border-[#2a4d34] group overflow-hidden" data-category="${news.category}">
+      <div class="aspect-[16/9] overflow-hidden bg-[#e7f3ea] dark:bg-[#2a4d34]">
+        <img src="${getThumbnail(news)}" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
       </div>
-      <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">${news.title}</h3>
-      <p class="text-sm text-[#4c6a51] dark:text-gray-400 line-clamp-2">${news.summary}</p>
+      <div class="p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-sm text-[#4c6a51]">${formatDate(news.date)}</span>
+          ${createCategoryBadge(news.category)}
+        </div>
+        <h3 class="font-bold text-lg mb-2 group-hover:text-primary transition-colors">${news.title}</h3>
+        <p class="text-sm text-[#4c6a51] dark:text-gray-400 line-clamp-2">${news.summary}</p>
+      </div>
     </a>
   `;
 }
@@ -96,7 +93,11 @@ async function renderNewsPreview(containerId, limit = CONFIG.newsPreviewCount) {
     return;
   }
 
-  container.innerHTML = items.map(createNewsListItem).join('');
+  container.innerHTML = `
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      ${items.map(createNewsCard).join('')}
+    </div>
+  `;
 }
 
 /**
