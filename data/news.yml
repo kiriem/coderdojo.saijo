@@ -3,6 +3,24 @@
 # 新しい記事を追加する場合は、以下のフォーマットで先頭に追加してください。
 # category: notice (お知らせ) | report (レポート) | event (イベント)
 
+- id: "2026-08-10"
+  date: "2026-08-10"
+  category: report
+  title: 第6回 CoderDojo 西条を開催しました！
+  summary: ゲストとして @yutoy さんが参加。多種多様な Dojo に。
+  content: |
+    第6回 #CoderDojo 西条 を開催しました！
+
+    <img src="data/images/20260903-040905-2b430717.jpg">
+
+    今日はスペシャルゲストとして @youtoy さんが来てくださいました！ありがとうございました！AI, メタバース, micro:bit, Android アプリ開発などなど、多様なDojoになってきました。
+
+    <img src="data/images/20260903-040919-c2106dc2.jpg">
+    <img src="data/images/20260903-040924-c8e09cee.jpg">
+    <img src="data/images/20260903-040929-f138a3e6.jpg">
+
+    次回は9月13日（日）10:00-12:00です。お待ちしております！
+  externalLink: ""
 - id: "2026-07-13"
   date: "2026-07-13"
   category: report
