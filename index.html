@@ -476,26 +476,50 @@
       const prevBtn = document.getElementById('slideshow-prev');
       const nextBtn = document.getElementById('slideshow-next');
 
-      // YAMLから画像リストを取得
+      // 1回の表示で使うスライドの枚数
+      const MAX_SLIDES = 8;
+
+      // これまでの記事にアップした写真を集めてランダムに並べる
       let images = [];
       try {
-        const data = await loadYaml('data/slides.yml');
-        images = data.images || [];
+        images = shuffleArray(await getAllNewsImages()).slice(0, MAX_SLIDES);
       } catch (e) {
-        console.error('Failed to load slideshow images:', e);
+        console.error('Failed to collect news images:', e);
       }
 
-      // 画像がなければデフォルト画像を表示
+      // 記事に画像がなければ slides.yml にフォールバック
+      if (images.length === 0) {
+        try {
+          const data = await loadYaml('data/slides.yml');
+          images = (data?.images || []).map(src => ({ src, title: '', link: '' }));
+        } catch (e) {
+          console.error('Failed to load slideshow images:', e);
+        }
+      }
+
+      // それでも画像がなければデフォルト画像を表示
       if (images.length === 0) {
         container.innerHTML = `<img src="https://inpw.jp/imgUploader/c/efdf949e2bfb07eafd93f5c4eb17af1f.jpg" alt="CoderDojo" class="w-full h-full object-cover">`;
         return;
       }
 
-      // スライドを生成
-      images.forEach((src, index) => {
+      // スライドを生成（記事が分かるものはクリックで記事へ）
+      images.forEach((image, index) => {
         const slide = document.createElement('div');
-        slide.className = 'slide absolute inset-0 opacity-0 transition-opacity duration-1000';
-        slide.innerHTML = `<img src="${src}" alt="活動風景 ${index + 1}" class="w-full h-full object-cover">`;
+        // 非表示のスライドがクリックを奪わないよう pointer-events-none にしておく
+        slide.className = 'slide absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-1000';
+
+        const alt = image.title || `活動風景 ${index + 1}`;
+        const img = `<img src="${image.src}" alt="${alt}" loading="${index === 0 ? 'eager' : 'lazy'}" class="w-full h-full object-cover">`;
+
+        const target = image.external ? ' target="_blank" rel="noopener"' : '';
+
+        slide.innerHTML = image.link
+          ? `<a href="${image.link}"${target} class="block w-full h-full">${img}
+               <span class="absolute inset-x-0 bottom-0 px-4 pt-10 pb-10 bg-gradient-to-t from-black/60 to-transparent text-white text-sm font-bold line-clamp-2">${image.title}</span>
+             </a>`
+          : img;
+
         container.appendChild(slide);
       });
 
@@ -524,13 +548,13 @@
 
       function goToSlide(index) {
         slides[currentIndex].classList.remove('opacity-100');
-        slides[currentIndex].classList.add('opacity-0');
+        slides[currentIndex].classList.add('opacity-0', 'pointer-events-none');
         dots[currentIndex]?.classList.remove('bg-white');
         dots[currentIndex]?.classList.add('bg-white/40');
 
         currentIndex = (index + slides.length) % slides.length;
 
-        slides[currentIndex].classList.remove('opacity-0');
+        slides[currentIndex].classList.remove('opacity-0', 'pointer-events-none');
         slides[currentIndex].classList.add('opacity-100');
         dots[currentIndex]?.classList.remove('bg-white/40');
         dots[currentIndex]?.classList.add('bg-white');
