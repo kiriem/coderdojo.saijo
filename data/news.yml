@@ -3,6 +3,18 @@
 # 新しい記事を追加する場合は、以下のフォーマットで先頭に追加してください。
 # category: notice (お知らせ) | report (レポート) | event (イベント)
 
+- id: "2026-10-25"
+  date: "2026-10-25"
+  category: report
+  title: 第8回 CoderDojo 西条を開催しました！
+  summary: 第8回 CoderDojo 西条を開催。LEGOにチャレンジ！
+  content: |
+    第8回 CoderDojo 西条を開催しました！今回は LEGO Computer Science & AI キットを使って、ハードウェアプログラミングに挑戦しました。
+
+    <img src="data/images/20261109-042931-476708e6.jpg">
+
+    次回は2026年11月15日（日）10:00-12:00です。ぜひご参加ください！
+  externalLink: ""
 - id: "2026-09-13"
   date: "2026-09-13"
   category: report
