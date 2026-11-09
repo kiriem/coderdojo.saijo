@@ -4,11 +4,11 @@
 # status: open (受付中) | closed (受付終了) | cancelled (中止)
 
 nextEvent:
-  number: 8
-  date: "2026-10-25"
+  number: 9
+  date: "2026-11-15"
   dayOfWeek: 日
   startTime: 10:00
   endTime: 12:00
   location: 広島大学東広島キャンパス 教育学部
-  registrationUrl: https://coderdojo-saijo.doorkeeper.jp/events/199340
+  registrationUrl: https://coderdojo-saijo.doorkeeper.jp/events/200366
   status: open

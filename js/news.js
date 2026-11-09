@@ -51,6 +51,49 @@ function getThumbnail(news) {
 }
 
 /**
+ * これまでの記事本文に含まれる画像をすべて集める
+ * 記事へのリンク付きで返すので、スライドショーから該当記事に飛べる
+ * @returns {Promise<Array<{src: string, title: string, link: string}>>} 画像情報の配列
+ */
+async function getAllNewsImages() {
+  const news = await getNews();
+  const images = [];
+  const seen = new Set();
+
+  news.forEach(item => {
+    const re = /<img[^>]+src=["']([^"']+)["']/gi;
+    let match;
+    while ((match = re.exec(item.content || '')) !== null) {
+      const src = match[1];
+      if (seen.has(src)) continue;
+      seen.add(src);
+      images.push({
+        src,
+        title: item.title || '',
+        link: item.externalLink || `news-detail.html?id=${item.id}`,
+        external: !!item.externalLink
+      });
+    }
+  });
+
+  return images;
+}
+
+/**
+ * 配列をシャッフルする（Fisher-Yates）
+ * @param {Array} array - 対象の配列（破壊しない）
+ * @returns {Array} シャッフル済みの新しい配列
+ */
+function shuffleArray(array) {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+/**
  * ニュースカードの HTML を生成（一覧ページ用）
  * @param {Object} news - ニュースオブジェクト
  * @returns {string} HTML 文字列
