@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Presentation Day 2026 in Hiroshima | CoderDojo 西条</title>
+  <meta name="description"
+    content="2026年12月26日(土)、広島大学ミライクリエで開催。中・四国地方の小学生〜高校生が、パソコンやタブレットでつくったものを見せあう一日です。絵も物語も音楽もOK。はじめての人、見学だけの人も歓迎。参加無料。">
+
+  <!-- OGP -->
+  <!-- TODO: 1200x630 のイベント専用OGP画像を用意したら差し替えてください -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Special Presentation Day 2026 in Hiroshima | CoderDojo 西条">
+  <meta property="og:description"
+    content="つくったものを、ことばにする。2026年12月26日(土) 広島大学ミライクリエ。中・四国地方の小学生〜高校生対象・参加無料。はじめての人も見学だけの人も歓迎です。">
+  <meta property="og:image" content="https://kiriem.github.io/coderdojo.saijo/images/ogp.png">
+  <meta property="og:url" content="https://kiriem.github.io/coderdojo.saijo/events/spd26/">
+  <meta property="og:site_name" content="CoderDojo 西条">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Special Presentation Day 2026 in Hiroshima">
+  <meta name="twitter:description"
+    content="つくったものを、ことばにする。2026年12月26日(土) 広島大学ミライクリエ。中・四国地方の小学生〜高校生対象・参加無料。">
+  <meta name="twitter:image" content="https://kiriem.github.io/coderdojo.saijo/images/ogp.png">
+
+  <meta name="theme-color" content="#F0F2FA">
+  <link rel="icon" href="logo-96.png">
+
+  <!-- 保存されたテーマを描画前に適用（ちらつき防止） -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('spd26-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+      } catch (e) { }
+    })();
+  </script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Lexend:wght@200;300;400;500&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: "rgb(var(--bg) / <alpha-value>)",
+            surface: "rgb(var(--surface) / <alpha-value>)",
+            ink: "rgb(var(--ink) / <alpha-value>)",
+            "ink-soft": "rgb(var(--ink-soft) / <alpha-value>)",
+            "ink-mute": "rgb(var(--ink-mute) / <alpha-value>)",
+            azure: "rgb(var(--azure) / <alpha-value>)",
+            violet: "rgb(var(--violet) / <alpha-value>)",
+            magenta: "rgb(var(--magenta) / <alpha-value>)",
+            btn: "rgb(var(--btn-bg) / <alpha-value>)",
+            "btn-ink": "rgb(var(--btn-ink) / <alpha-value>)",
+          },
+          fontFamily: {
+            jp: ["Zen Kaku Gothic New", "sans-serif"],
+            wide: ["Lexend", "Zen Kaku Gothic New", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "1.25rem",
+            lg: "1.75rem",
+            xl: "2.25rem",
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ============================================================
+       ライトモード（既定）
+       ガラスは「発光」ではなく、影と彩度の差で見せる
+       ============================================================ */
+    :root,
+    [data-theme="light"] {
+      --bg: 240 242 250;
+      --surface: 255 255 255;
+      --ink: 19 23 53;
+      --ink-soft: 88 95 133;
+      --ink-mute: 100 107 142;
+      --azure: 42 91 215;
+      --violet: 106 63 208;
+      --magenta: 178 59 150;
+      --btn-bg: 22 24 58;
+      --btn-ink: 255 255 255;
+
+      --line: rgba(19, 23, 53, .10);
+
+      /* ガラス：白を透かし、色のついた影で浮かせる */
+      --glass-bg: linear-gradient(160deg, rgba(255, 255, 255, .88), rgba(255, 255, 255, .52));
+      --glass-border: rgba(255, 255, 255, .9);
+      --glass-shadow: 0 18px 44px -20px rgba(35, 55, 160, .40), 0 2px 8px -3px rgba(35, 55, 160, .14);
+      --glass-shadow-hover: 0 26px 56px -22px rgba(35, 55, 160, .50), 0 3px 10px -3px rgba(35, 55, 160, .18);
+      --glass-border-hover: rgba(106, 63, 208, .40);
+      --glass-edge: linear-gradient(90deg, transparent, rgba(120, 150, 255, .55), transparent);
+
+      /* プリズム：紙に落ちた光。明度を上げて濁らせない */
+      --prism-1: #8FB6FF;
+      --prism-2: #BFA3FF;
+      --prism-3: #FFA6E4;
+      --prism-opacity: .55;
+      --prism-blur: 110px;
+
+      --grain-blend: multiply;
+      --grain-opacity: .16;
+
+      --hairline: linear-gradient(90deg, transparent, rgba(42, 91, 215, .45), rgba(178, 59, 150, .38), transparent);
+      --iris: linear-gradient(104deg, #2E6BFF 0%, #4E63EE 26%, #7B45D6 58%, #C43BA6 90%);
+      --halo: radial-gradient(circle at 50% 50%, rgba(120, 160, 255, .45), rgba(190, 150, 255, .28) 45%, transparent 70%);
+      --header-bg: rgba(240, 242, 250, .72);
+      --mobilebar-bg: rgba(240, 242, 250, .88);
+    }
+
+    /* ============================================================
+       ダークモード
+       ============================================================ */
+    [data-theme="dark"] {
+      --bg: 7 8 24;
+      --surface: 11 13 31;
+      --ink: 238 241 255;
+      --ink-soft: 155 161 196;
+      --ink-mute: 122 128 163;
+      --azure: 175 204 255;
+      --violet: 169 140 255;
+      --magenta: 242 134 220;
+      --btn-bg: 238 241 255;
+      --btn-ink: 7 8 24;
+
+      --line: rgba(255, 255, 255, .10);
+
+      --glass-bg: linear-gradient(160deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .03));
+      --glass-border: rgba(255, 255, 255, .12);
+      --glass-shadow: none;
+      --glass-shadow-hover: none;
+      --glass-border-hover: rgba(175, 204, 255, .45);
+      --glass-edge: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), transparent);
+
+      --prism-1: #6FA4FF;
+      --prism-2: #A98CFF;
+      --prism-3: #F286DC;
+      --prism-opacity: .42;
+      --prism-blur: 100px;
+
+      --grain-blend: overlay;
+      --grain-opacity: .35;
+
+      --hairline: linear-gradient(90deg, transparent, rgba(175, 204, 255, .5), rgba(242, 134, 220, .4), transparent);
+      --iris: linear-gradient(104deg, #8FC2FF 0%, #6FA4FF 26%, #A98CFF 58%, #F286DC 88%);
+      --halo: radial-gradient(circle at 50% 50%, rgba(111, 164, 255, .40), rgba(169, 140, 255, .22) 45%, transparent 70%);
+      --header-bg: rgba(7, 8, 24, .70);
+      --mobilebar-bg: rgba(7, 8, 24, .85);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5rem;
+    }
+
+    body {
+      background-color: rgb(var(--bg));
+      transition: background-color .4s ease, color .4s ease;
+    }
+
+    .material-symbols-rounded {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* --- 屈折した光 --- */
+    .prism {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(var(--prism-blur));
+      opacity: var(--prism-opacity);
+      animation: drift 22s ease-in-out infinite;
+    }
+
+    .prism-1 { background: var(--prism-1); }
+    .prism-2 { background: var(--prism-2); }
+    .prism-3 { background: var(--prism-3); }
+
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(0, -30px, 0) scale(1.1); }
+    }
+
+    /* グラデーションを「刷り物」の質感に寄せる微粒子 */
+    .grain::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: var(--grain-opacity);
+      mix-blend-mode: var(--grain-blend);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    }
+
+    /* --- ガラスのパネル --- */
+    .glass {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
+    }
+
+    /* パネル上辺の光のふち */
+    .glass::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: var(--glass-edge);
+    }
+
+    .glass-hover:hover {
+      border-color: var(--glass-border-hover);
+      box-shadow: var(--glass-shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    /* --- ロゴと同じ虹彩の文字 --- */
+    .iris {
+      background: var(--iris);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hairline {
+      height: 1px;
+      background: var(--hairline);
+    }
+
+    .logo-halo {
+      position: absolute;
+      inset: -18%;
+      border-radius: 9999px;
+      background: var(--halo);
+      filter: blur(34px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    details>summary { list-style: none; }
+    details>summary::-webkit-details-marker { display: none; }
+    details[open] .faq-icon { transform: rotate(45deg); }
+
+    /* テーマ切替ボタンのアイコン出し分け */
+    [data-theme="light"] .icon-dark { display: none; }
+    [data-theme="dark"] .icon-light { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .prism, .animate-pulse { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+      body { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-bg font-jp text-ink antialiased selection:bg-violet/30">
+
+  <!-- ============ Header ============ -->
+  <header class="sticky top-0 z-50 w-full border-b backdrop-blur-xl"
+    style="border-color: var(--line); background: var(--header-bg);">
+    <div class="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-5 py-3">
+      <a href="../../index.html" class="flex items-center gap-2.5 transition-opacity hover:opacity-70">
+        <img src="logo-96.png" alt="" class="h-9 w-9">
+        <span class="text-sm font-bold leading-tight">SPD 2026<span class="ml-2 hidden font-normal text-ink-mute sm:inline">CoderDojo 西条</span></span>
+      </a>
+      <div class="flex items-center gap-4 sm:gap-6">
+        <nav class="hidden items-center gap-7 md:flex">
+          <a class="text-sm font-medium text-ink-soft transition-colors hover:text-azure" href="#about">どんな会？</a>
+          <a class="text-sm font-medium text-ink-soft transition-colors hover:text-azure" href="#outline">開催概要</a>
+          <a class="text-sm font-medium text-ink-soft transition-colors hover:text-azure" href="#faq">よくある質問</a>
+        </nav>
+        <button id="theme-toggle" type="button" aria-label="配色を切り替える"
+          class="flex size-10 items-center justify-center rounded-full border text-ink-soft transition-colors hover:text-azure"
+          style="border-color: var(--line);">
+          <span class="material-symbols-rounded icon-light text-xl">dark_mode</span>
+          <span class="material-symbols-rounded icon-dark text-xl">light_mode</span>
+        </button>
+        <a href="#entry"
+          class="flex h-10 items-center justify-center rounded-full bg-btn px-5 text-sm font-bold text-btn-ink transition-transform hover:scale-105">
+          申し込む
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ Hero ============ -->
+    <section class="grain relative overflow-hidden px-5 pb-24 pt-14 md:pb-32 md:pt-20">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="prism prism-1 left-[-12%] top-[-6%] h-[420px] w-[420px]"></div>
+        <div class="prism prism-2 right-[-10%] top-[8%] h-[460px] w-[460px]" style="animation-delay:-7s"></div>
+        <div class="prism prism-3 bottom-[-14%] left-[34%] h-[380px] w-[380px]" style="animation-delay:-14s"></div>
+      </div>
+
+      <div class="relative mx-auto flex max-w-[980px] flex-col items-center text-center">
+
+        <!-- ロゴ -->
+        <div class="relative mb-9 w-[180px] sm:w-[230px] md:w-[260px]">
+          <div class="logo-halo" aria-hidden="true"></div>
+          <img src="logo-560.png" alt="Special Presentation Day 2026 のロゴ" width="560" height="560"
+            class="relative w-full drop-shadow-[0_14px_36px_rgba(60,80,190,.28)]">
+        </div>
+
+        <p class="font-wide text-[0.7rem] font-light uppercase tracking-[0.34em] text-azure sm:text-sm sm:tracking-[0.42em]">
+          Special Presentation Day
+        </p>
+        <p class="mt-2 font-wide text-2xl font-light tracking-[0.2em] text-ink-mute sm:text-3xl">2026</p>
+
+        <div class="hairline my-9 w-40" aria-hidden="true"></div>
+
+        <h1 class="text-[2.5rem] font-black leading-[1.3] tracking-tight sm:text-6xl md:text-[4.4rem]">
+          つくったものを、<br>
+          <span class="iris">ことばにする。</span>
+        </h1>
+
+        <p class="mt-9 max-w-[600px] text-base leading-loose text-ink-soft sm:text-lg">
+          パソコンやタブレットでつくったものを、見せあう一日です。<br class="hidden sm:block">
+          絵でも、物語でも、音楽でも、ゲームでも。<br class="hidden sm:block">
+          うまくなくても、まだ途中でも、大丈夫です。
+        </p>
+
+        <!-- 来やすくするための3点 -->
+        <ul class="mt-9 flex flex-wrap items-center justify-center gap-2.5 text-xs font-medium sm:text-sm">
+          <li class="rounded-full border border-azure/30 bg-azure/10 px-4 py-1.5 text-azure">はじめての人がほとんど</li>
+          <li class="rounded-full border border-violet/30 bg-violet/10 px-4 py-1.5 text-violet">順位はつけません</li>
+          <li class="rounded-full border border-magenta/30 bg-magenta/10 px-4 py-1.5 text-magenta">見学だけでもOK</li>
+        </ul>
+
+        <!-- 日時・場所・費用 -->
+        <div class="mt-14 grid w-full max-w-[860px] grid-cols-1 gap-4 sm:grid-cols-3">
+          <div class="glass rounded-lg p-6 text-left">
+            <span class="material-symbols-rounded mb-3 block text-2xl text-azure">calendar_month</span>
+            <p class="font-wide text-[0.65rem] font-light uppercase tracking-[0.22em] text-ink-mute">Date</p>
+            <p class="mt-1.5 font-wide text-3xl font-light tracking-tight">12.26</p>
+            <p class="mt-1 text-sm text-ink-soft">2026年（土）13:00 – 17:00</p>
+          </div>
+          <div class="glass rounded-lg p-6 text-left">
+            <span class="material-symbols-rounded mb-3 block text-2xl text-violet">location_on</span>
+            <p class="font-wide text-[0.65rem] font-light uppercase tracking-[0.22em] text-ink-mute">Place</p>
+            <p class="mt-1.5 text-2xl font-bold tracking-tight">ミライクリエ</p>
+            <p class="mt-1 text-sm text-ink-soft">広島大学 東広島キャンパス</p>
+          </div>
+          <div class="glass rounded-lg p-6 text-left">
+            <span class="material-symbols-rounded mb-3 block text-2xl text-magenta">confirmation_number</span>
+            <p class="font-wide text-[0.65rem] font-light uppercase tracking-[0.22em] text-ink-mute">Fee</p>
+            <p class="mt-1.5 text-2xl font-bold tracking-tight">無料</p>
+            <p class="mt-1 text-sm text-ink-soft">参加費はかかりません</p>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-12 flex w-full flex-col items-center gap-4">
+          <a data-entry-link href="https://docs.google.com/forms/d/e/1FAIpQLScFohUqYuPFPi3o_BpJerpr0EkTxng1G3mWXt-u9LORaPLC_w/viewform" target="_blank" rel="noopener"
+            class="group relative flex h-16 w-full max-w-[380px] items-center justify-center gap-2 rounded-full bg-btn text-lg font-bold text-btn-ink transition-transform hover:scale-[1.03]">
+            <span class="absolute -inset-3 -z-10 rounded-full opacity-50 blur-xl" aria-hidden="true"
+              style="background: var(--iris);"></span>
+            参加を申し込む
+            <span class="material-symbols-rounded transition-transform group-hover:translate-x-1">arrow_forward</span>
+          </a>
+          <p class="text-sm text-ink-soft">申込み〆切：2026年12月13日(日) 20:00</p>
+
+          <div id="countdown" class="mt-1 hidden items-center gap-2 text-sm" aria-live="polite">
+            <span id="countdown-value" class="rounded-full border px-4 py-1 font-medium text-azure"
+              style="border-color: var(--line);"></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ About ============ -->
+    <section id="about" class="border-t bg-surface px-5 py-24 md:py-28" style="border-color: var(--line);">
+      <div class="mx-auto max-w-[900px]">
+        <div class="reveal text-center">
+          <p class="font-wide text-xs font-light uppercase tracking-[0.3em] text-azure">About</p>
+          <h2 class="mt-4 text-3xl font-black leading-snug sm:text-4xl">
+            「これ、つくったんだ」を<br class="sm:hidden">話す日。
+          </h2>
+          <p class="mx-auto mt-7 max-w-[660px] text-base leading-loose text-ink-soft">
+            Special Presentation Day は、中・四国地方のいろいろな場所から集まって、
+            いま取り組んでいることをおたがいに話す会です。
+            じょうずなプレゼンをする必要はありません。
+            「なんでつくったの？」「ここが大変だった」——
+            そのまま話してくれるのが、いちばんおもしろい発表になります。
+          </p>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div class="reveal glass glass-hover rounded-lg p-8">
+            <div class="mb-5 flex size-12 items-center justify-center rounded-full border border-azure/30 bg-azure/10 text-azure">
+              <span class="material-symbols-rounded text-2xl">all_inclusive</span>
+            </div>
+            <h3 class="text-xl font-bold">途中でもいい</h3>
+            <p class="mt-3.5 text-sm leading-loose text-ink-soft">
+              完成していなくてもかまいません。作っている途中のものや、うまくいかなかった話も大歓迎です。
+            </p>
+          </div>
+          <div class="reveal glass glass-hover rounded-lg p-8" style="transition-delay:.08s">
+            <div class="mb-5 flex size-12 items-center justify-center rounded-full border border-violet/30 bg-violet/10 text-violet">
+              <span class="material-symbols-rounded text-2xl">communities</span>
+            </div>
+            <h3 class="text-xl font-bold">なかまに出会える</h3>
+            <p class="mt-3.5 text-sm leading-loose text-ink-soft">
+              学校でも家でも、ひとりでコツコツ作っている人は多いもの。同じように何かを作っている人に会えます。
+            </p>
+          </div>
+          <div class="reveal glass glass-hover rounded-lg p-8" style="transition-delay:.16s">
+            <div class="mb-5 flex size-12 items-center justify-center rounded-full border border-magenta/30 bg-magenta/10 text-magenta">
+              <span class="material-symbols-rounded text-2xl">lightbulb</span>
+            </div>
+            <h3 class="text-xl font-bold">次のヒントが見つかる</h3>
+            <p class="mt-3.5 text-sm leading-loose text-ink-soft">
+              人に話すと、自分の考えが整理されます。もらった感想から、次に作りたいものが見えてきます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 発表できるもの ============ -->
+    <section class="grain relative overflow-hidden px-5 py-24 md:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="prism prism-2 right-[-14%] top-[20%] h-[380px] w-[380px]"></div>
+      </div>
+
+      <div class="relative mx-auto max-w-[900px]">
+        <div class="reveal text-center">
+          <p class="font-wide text-xs font-light uppercase tracking-[0.3em] text-violet">What to present</p>
+          <h2 class="mt-4 text-3xl font-black leading-snug sm:text-4xl">
+            パソコンやタブレットで<br class="sm:hidden">つくったものなら、<br>
+            <span class="iris">なんでもいい。</span>
+          </h2>
+          <p class="mx-auto mt-7 max-w-[560px] text-base leading-loose text-ink-soft">
+            プログラミングでなくてもかまいません。<br class="hidden sm:block">
+            たとえば、こんなものが発表されています。
+          </p>
+        </div>
+
+        <ul class="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <li class="reveal glass glass-hover flex items-center gap-4 rounded-lg px-6 py-5">
+            <span class="material-symbols-rounded text-2xl text-azure">palette</span>
+            <span class="text-sm font-bold leading-snug">絵・イラスト<span class="mt-0.5 block text-xs font-normal text-ink-mute">デザインも</span></span>
+          </li>
+          <li class="reveal glass glass-hover flex items-center gap-4 rounded-lg px-6 py-5">
+            <span class="material-symbols-rounded text-2xl text-azure">menu_book</span>
+            <span class="text-sm font-bold leading-snug">物語・マンガ<span class="mt-0.5 block text-xs font-normal text-ink-mute">絵本・小説も</span></span>
+          </li>
+          <li class="reveal glass glass-hover flex items-center gap-4 rounded-lg px-6 py-5">
+            <span class="material-symbols-rounded text-2xl text-azure">graphic_eq</span>
+            <span class="text-sm font-bold leading-snug">音楽・音<span class="mt-0.5 block text-xs font-normal text-ink-mute">作曲・演奏も</span></span>
+          </li>
+          <li class="reveal glass glass-hover flex items-center gap-4 rounded-lg px-6 py-5">
+            <span class="material-symbols-rounded text-2xl text-violet">movie</span>
+            <span class="text-sm font-bold leading-snug">動画・アニメ<span class="mt-0.5 block text-xs font-normal text-ink-mute">写真も</span></span>
+          </li>
+          <li class="reveal glass glass-hover flex items-center gap-4 rounded-lg px-6 py-5">
+            <span class="material-symbols-rounded text-2xl text-violet">search</span>
+            <span class="text-sm font-bold leading-snug">調べたこと<span class="mt-0.5 block text-xs font-normal text-ink-mute">自由研究も</span></span>
+          </li>
+          <li class="reveal glass glass-hover flex items-center gap-4 rounded-lg px-6 py-5">
+            <span class="material-symbols-rounded text-2xl text-violet">stadia_controller</span>
+            <span class="text-sm font-bold leading-snug">ゲーム<span class="mt-0.5 block text-xs font-normal text-ink-mute">遊びの仕組みも</span></span>
+          </li>
+          <li class="reveal glass glass-hover flex items-center gap-4 rounded-lg px-6 py-5">
+            <span class="material-symbols-rounded text-2xl text-magenta">language</span>
+            <span class="text-sm font-bold leading-snug">Webサイト<span class="mt-0.5 block text-xs font-normal text-ink-mute">アプリも</span></span>
+          </li>
+          <li class="reveal glass glass-hover flex items-center gap-4 rounded-lg px-6 py-5">
+            <span class="material-symbols-rounded text-2xl text-magenta">smart_toy</span>
+            <span class="text-sm font-bold leading-snug">ロボット<span class="mt-0.5 block text-xs font-normal text-ink-mute">電子工作も</span></span>
+          </li>
+          <li class="reveal flex items-center gap-4 rounded-lg border border-dashed px-6 py-5" style="border-color: rgb(var(--ink-mute) / .45);">
+            <span class="material-symbols-rounded text-2xl text-ink-mute">add</span>
+            <span class="text-sm font-bold leading-snug">そのほか<span class="mt-0.5 block text-xs font-normal text-ink-mute">なんでも相談を</span></span>
+          </li>
+        </ul>
+
+        <p class="reveal mx-auto mt-10 max-w-[620px] text-center text-sm leading-loose text-ink-soft">
+          話し方も自由です。作品を動かしながらでも、画面を見せるだけでも、<br class="hidden sm:block">
+          紙に書いてきたものを読むのでもかまいません。
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ こんな人に来てほしい ============ -->
+    <section class="border-y bg-surface px-5 py-24 md:py-28" style="border-color: var(--line);">
+      <div class="mx-auto max-w-[840px]">
+        <div class="reveal text-center">
+          <p class="font-wide text-xs font-light uppercase tracking-[0.3em] text-magenta">Who</p>
+          <h2 class="mt-4 text-3xl font-black sm:text-4xl">こんな人に来てほしい</h2>
+        </div>
+
+        <ul class="reveal mt-14 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <li class="glass flex items-start gap-4 rounded-lg p-6">
+            <span class="material-symbols-rounded shrink-0 text-azure">check_circle</span>
+            <p class="text-sm font-bold leading-relaxed">人前で話すのが得意ではない人<span class="mt-1 block font-normal leading-loose text-ink-soft">みんな同じです。ゆっくりで大丈夫。</span></p>
+          </li>
+          <li class="glass flex items-start gap-4 rounded-lg p-6">
+            <span class="material-symbols-rounded shrink-0 text-azure">check_circle</span>
+            <p class="text-sm font-bold leading-relaxed">パソコンを触りはじめたばかりの人<span class="mt-1 block font-normal leading-loose text-ink-soft">経験の長さは関係ありません。</span></p>
+          </li>
+          <li class="glass flex items-start gap-4 rounded-lg p-6">
+            <span class="material-symbols-rounded shrink-0 text-violet">check_circle</span>
+            <p class="text-sm font-bold leading-relaxed">ひとりで黙々と作っている人<span class="mt-1 block font-normal leading-loose text-ink-soft">同じような人に、たくさん会えます。</span></p>
+          </li>
+          <li class="glass flex items-start gap-4 rounded-lg p-6">
+            <span class="material-symbols-rounded shrink-0 text-violet">check_circle</span>
+            <p class="text-sm font-bold leading-relaxed">まわりに同じ趣味の友だちがいない人<span class="mt-1 block font-normal leading-loose text-ink-soft">ここには、きっといます。</span></p>
+          </li>
+          <li class="glass flex items-start gap-4 rounded-lg p-6">
+            <span class="material-symbols-rounded shrink-0 text-magenta">check_circle</span>
+            <p class="text-sm font-bold leading-relaxed">発表はまだ迷っている人<span class="mt-1 block font-normal leading-loose text-ink-soft">見学だけの参加も歓迎しています。</span></p>
+          </li>
+          <li class="glass flex items-start gap-4 rounded-lg p-6">
+            <span class="material-symbols-rounded shrink-0 text-magenta">check_circle</span>
+            <p class="text-sm font-bold leading-relaxed">CoderDojo に来たことがない人<span class="mt-1 block font-normal leading-loose text-ink-soft">はじめての方がほとんどです。</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 開催概要 ============ -->
+    <section id="outline" class="px-5 py-24 md:py-28">
+      <div class="mx-auto max-w-[820px]">
+        <div class="reveal text-center">
+          <p class="font-wide text-xs font-light uppercase tracking-[0.3em] text-azure">Outline</p>
+          <h2 class="mt-4 text-3xl font-black sm:text-4xl">開催概要</h2>
+        </div>
+
+        <dl class="reveal glass mt-14 rounded-lg">
+          <div class="flex flex-col gap-1 border-b px-6 py-5 sm:flex-row sm:gap-8 sm:px-9" style="border-color: var(--line);">
+            <dt class="shrink-0 text-sm font-bold text-azure sm:w-28 sm:pt-1">イベント名</dt>
+            <dd class="text-base">Special Presentation Day 2026 in Hiroshima</dd>
+          </div>
+          <div class="flex flex-col gap-1 border-b px-6 py-5 sm:flex-row sm:gap-8 sm:px-9" style="border-color: var(--line);">
+            <dt class="shrink-0 text-sm font-bold text-azure sm:w-28 sm:pt-1">開催日時</dt>
+            <dd class="text-base">2026年12月26日（土）13:00 – 17:00<span class="mt-1 block text-sm text-ink-soft">※12:45 より受付開始</span></dd>
+          </div>
+          <div class="flex flex-col gap-1 border-b px-6 py-5 sm:flex-row sm:gap-8 sm:px-9" style="border-color: var(--line);">
+            <dt class="shrink-0 text-sm font-bold text-azure sm:w-28 sm:pt-1">会場</dt>
+            <dd class="text-base">広島大学 ミライクリエ<span class="mt-1 block text-sm text-ink-soft">〒739-8511 広島県東広島市鏡山1-3-2（東広島キャンパス内）</span></dd>
+          </div>
+          <div class="flex flex-col gap-1 border-b px-6 py-5 sm:flex-row sm:gap-8 sm:px-9" style="border-color: var(--line);">
+            <dt class="shrink-0 text-sm font-bold text-azure sm:w-28 sm:pt-1">対象</dt>
+            <dd class="text-base">中・四国地方の小学生〜高校生<span class="mt-1 block text-sm text-ink-soft">※保護者の方の見学も歓迎です</span></dd>
+          </div>
+          <div class="flex flex-col gap-1 border-b px-6 py-5 sm:flex-row sm:gap-8 sm:px-9" style="border-color: var(--line);">
+            <dt class="shrink-0 text-sm font-bold text-azure sm:w-28 sm:pt-1">内容</dt>
+            <dd class="text-base">いま取り組んでいるプロジェクトの発表会<span class="mt-1 block text-sm text-ink-soft">コンピュータを使った作品であれば、ジャンルは問いません。順位や審査はありません。</span></dd>
+          </div>
+          <div class="flex flex-col gap-1 border-b px-6 py-5 sm:flex-row sm:gap-8 sm:px-9" style="border-color: var(--line);">
+            <dt class="shrink-0 text-sm font-bold text-azure sm:w-28 sm:pt-1">参加費</dt>
+            <dd class="text-base">無料<span class="mt-1 block text-sm text-ink-soft">※会場までの交通費は各自ご負担ください</span></dd>
+          </div>
+          <div class="flex flex-col gap-1 border-b px-6 py-5 sm:flex-row sm:gap-8 sm:px-9" style="border-color: var(--line);">
+            <dt class="shrink-0 text-sm font-bold text-azure sm:w-28 sm:pt-1">申込み〆切</dt>
+            <dd class="text-base font-bold">2026年12月13日（日）20:00</dd>
+          </div>
+          <div class="flex flex-col gap-1 px-6 py-5 sm:flex-row sm:gap-8 sm:px-9">
+            <dt class="shrink-0 text-sm font-bold text-azure sm:w-28 sm:pt-1">主催</dt>
+            <dd class="text-base">CoderDojo 西条 @広島大学</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ 当日の流れ ============ -->
+    <section class="border-y bg-surface px-5 py-24 md:py-28" style="border-color: var(--line);">
+      <div class="mx-auto max-w-[720px]">
+        <div class="reveal text-center">
+          <p class="font-wide text-xs font-light uppercase tracking-[0.3em] text-violet">Timetable</p>
+          <h2 class="mt-4 text-3xl font-black sm:text-4xl">当日の流れ</h2>
+          <p class="mt-4 text-sm text-ink-mute">※予定です。変更になる場合があります。</p>
+        </div>
+
+        <ol class="reveal mt-14">
+          <li class="relative flex gap-6 pb-9 pl-1">
+            <div class="absolute left-[7px] top-5 h-full w-px" style="background: var(--line);"></div>
+            <span class="relative z-10 mt-1.5 size-4 shrink-0 rounded-full border-2 border-azure bg-surface"></span>
+            <div class="-mt-1">
+              <p class="font-wide text-sm font-light tracking-[0.15em] text-azure">12:45</p>
+              <p class="mt-1.5 font-bold">受付・準備</p>
+              <p class="mt-1.5 text-sm leading-loose text-ink-soft">会場に着いたら受付へ。発表に使うものの準備をスタッフが手伝います。</p>
+            </div>
+          </li>
+          <li class="relative flex gap-6 pb-9 pl-1">
+            <div class="absolute left-[7px] top-5 h-full w-px" style="background: var(--line);"></div>
+            <span class="relative z-10 mt-1.5 size-4 shrink-0 rounded-full border-2 border-azure bg-surface"></span>
+            <div class="-mt-1">
+              <p class="font-wide text-sm font-light tracking-[0.15em] text-azure">13:00</p>
+              <p class="mt-1.5 font-bold">オープニング</p>
+              <p class="mt-1.5 text-sm leading-loose text-ink-soft">今日の流れを説明します。かんたんな自己紹介から。</p>
+            </div>
+          </li>
+          <li class="relative flex gap-6 pb-9 pl-1">
+            <div class="absolute left-[7px] top-5 h-full w-px" style="background: var(--line);"></div>
+            <span class="relative z-10 mt-1.5 size-4 shrink-0 rounded-full border-2 border-violet bg-surface"></span>
+            <div class="-mt-1">
+              <p class="font-wide text-sm font-light tracking-[0.15em] text-violet">13:20</p>
+              <p class="mt-1.5 font-bold">発表タイム（前半）</p>
+              <p class="mt-1.5 text-sm leading-loose text-ink-soft">ひとりずつ、自分の作品やプロジェクトを話します。</p>
+            </div>
+          </li>
+          <li class="relative flex gap-6 pb-9 pl-1">
+            <div class="absolute left-[7px] top-5 h-full w-px" style="background: var(--line);"></div>
+            <span class="relative z-10 mt-1.5 size-4 shrink-0 rounded-full border-2 bg-surface" style="border-color: rgb(var(--ink-mute) / .6);"></span>
+            <div class="-mt-1">
+              <p class="font-wide text-sm font-light tracking-[0.15em] text-ink-mute">14:50</p>
+              <p class="mt-1.5 font-bold">休憩</p>
+              <p class="mt-1.5 text-sm leading-loose text-ink-soft">おやつ休憩。ほかの人の作品を見て回れます。</p>
+            </div>
+          </li>
+          <li class="relative flex gap-6 pb-9 pl-1">
+            <div class="absolute left-[7px] top-5 h-full w-px" style="background: var(--line);"></div>
+            <span class="relative z-10 mt-1.5 size-4 shrink-0 rounded-full border-2 border-violet bg-surface"></span>
+            <div class="-mt-1">
+              <p class="font-wide text-sm font-light tracking-[0.15em] text-violet">15:10</p>
+              <p class="mt-1.5 font-bold">発表タイム（後半）</p>
+              <p class="mt-1.5 text-sm leading-loose text-ink-soft">発表のあとは、感想や質問を伝えあいます。</p>
+            </div>
+          </li>
+          <li class="relative flex gap-6 pl-1">
+            <span class="relative z-10 mt-1.5 size-4 shrink-0 rounded-full border-2 border-magenta bg-surface"></span>
+            <div class="-mt-1">
+              <p class="font-wide text-sm font-light tracking-[0.15em] text-magenta">16:30 – 17:00</p>
+              <p class="mt-1.5 font-bold">ふりかえり・交流タイム</p>
+              <p class="mt-1.5 text-sm leading-loose text-ink-soft">今日の感想をシェアして解散。自由に話せる時間もあります。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 参加の流れ ============ -->
+    <section class="px-5 py-24 md:py-28">
+      <div class="mx-auto max-w-[900px]">
+        <div class="reveal text-center">
+          <p class="font-wide text-xs font-light uppercase tracking-[0.3em] text-azure">How to join</p>
+          <h2 class="mt-4 text-3xl font-black sm:text-4xl">参加までの3ステップ</h2>
+        </div>
+        <div class="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div class="reveal glass glass-hover rounded-lg p-8">
+            <span class="font-wide text-4xl font-extralight tracking-tight text-azure">01</span>
+            <h3 class="mt-4 text-lg font-bold">申し込む</h3>
+            <p class="mt-3 text-sm leading-loose text-ink-soft">
+              12/13(日) 20:00 までに、申込みフォームから登録します。保護者の方からの申込みでもかまいません。
+            </p>
+          </div>
+          <div class="reveal glass glass-hover rounded-lg p-8" style="transition-delay:.08s">
+            <span class="font-wide text-4xl font-extralight tracking-tight text-violet">02</span>
+            <h3 class="mt-4 text-lg font-bold">話す準備をする</h3>
+            <p class="mt-3 text-sm leading-loose text-ink-soft">
+              作ったものを見せながら話せるように準備します。何を話せばいいか迷ったら、CoderDojo 西条のメンターが一緒に考えます。
+            </p>
+          </div>
+          <div class="reveal glass glass-hover rounded-lg p-8" style="transition-delay:.16s">
+            <span class="font-wide text-4xl font-extralight tracking-tight text-magenta">03</span>
+            <h3 class="mt-4 text-lg font-bold">当日、話す</h3>
+            <p class="mt-3 text-sm leading-loose text-ink-soft">
+              12/26(土) はミライクリエへ。緊張しても大丈夫、みんなが聞いています。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section id="faq" class="border-y bg-surface px-5 py-24 md:py-28" style="border-color: var(--line);">
+      <div class="mx-auto max-w-[760px]">
+        <div class="reveal text-center">
+          <p class="font-wide text-xs font-light uppercase tracking-[0.3em] text-violet">FAQ</p>
+          <h2 class="mt-4 text-3xl font-black sm:text-4xl">よくある質問</h2>
+        </div>
+
+        <div class="reveal mt-14 flex flex-col gap-3">
+          <details class="glass rounded-lg">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-7 py-5 font-bold">
+              <span>プログラミングができなくても参加できますか？</span>
+              <span class="material-symbols-rounded faq-icon shrink-0 text-azure transition-transform">add</span>
+            </summary>
+            <p class="border-t px-7 py-5 text-sm leading-loose text-ink-soft" style="border-color: var(--line);">
+              できます。パソコンやタブレットを使って作ったものであれば、絵でも、物語でも、動画でも、音楽でも、調べたことでもかまいません。プログラミングの経験はまったく必要ありません。
+            </p>
+          </details>
+
+          <details class="glass rounded-lg">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-7 py-5 font-bold">
+              <span>CoderDojo に参加したことがなくても大丈夫ですか？</span>
+              <span class="material-symbols-rounded faq-icon shrink-0 text-azure transition-transform">add</span>
+            </summary>
+            <p class="border-t px-7 py-5 text-sm leading-loose text-ink-soft" style="border-color: var(--line);">
+              大丈夫です。CoderDojo に通っていない方も、中・四国地方にお住まいの小学生〜高校生であればどなたでも参加できます。はじめての方がほとんどです。
+            </p>
+          </details>
+
+          <details class="glass rounded-lg">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-7 py-5 font-bold">
+              <span>人前で話すのが苦手です。</span>
+              <span class="material-symbols-rounded faq-icon shrink-0 text-azure transition-transform">add</span>
+            </summary>
+            <p class="border-t px-7 py-5 text-sm leading-loose text-ink-soft" style="border-color: var(--line);">
+              ほとんどの人がそうです。じょうずに話す必要はまったくありません。紙に書いてきたものを読んでも、画面を見せながらぽつぽつ話しても大丈夫です。緊張したときは、スタッフが横についてサポートします。
+            </p>
+          </details>
+
+          <details class="glass rounded-lg">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-7 py-5 font-bold">
+              <span>作品がまだ完成していません。それでも発表できますか？</span>
+              <span class="material-symbols-rounded faq-icon shrink-0 text-azure transition-transform">add</span>
+            </summary>
+            <p class="border-t px-7 py-5 text-sm leading-loose text-ink-soft" style="border-color: var(--line);">
+              できます。むしろ「いま作っている途中のもの」の発表は大歓迎です。どこで行き詰まっているかを話すと、聞いている人からヒントをもらえるかもしれません。
+            </p>
+          </details>
+
+          <details class="glass rounded-lg">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-7 py-5 font-bold">
+              <span>見学だけの参加もできますか？</span>
+              <span class="material-symbols-rounded faq-icon shrink-0 text-azure transition-transform">add</span>
+            </summary>
+            <p class="border-t px-7 py-5 text-sm leading-loose text-ink-soft" style="border-color: var(--line);">
+              できます。「どんな感じか見てみたい」という方も歓迎です。申込みのときに見学希望とお伝えください。当日に「やっぱり話してみたい」となってもかまいません。
+            </p>
+          </details>
+
+          <details class="glass rounded-lg">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-7 py-5 font-bold">
+              <span>発表に使うパソコンは持っていきますか？</span>
+              <span class="material-symbols-rounded faq-icon shrink-0 text-azure transition-transform">add</span>
+            </summary>
+            <p class="border-t px-7 py-5 text-sm leading-loose text-ink-soft" style="border-color: var(--line);">
+              使い慣れた機材で話せるよう、できるだけご自身のパソコンやタブレット、作品をお持ちください。準備が難しい場合は、申込みのときにご相談ください。
+            </p>
+          </details>
+
+          <details class="glass rounded-lg">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-7 py-5 font-bold">
+              <span>保護者も一緒に行けますか？</span>
+              <span class="material-symbols-rounded faq-icon shrink-0 text-azure transition-transform">add</span>
+            </summary>
+            <p class="border-t px-7 py-5 text-sm leading-loose text-ink-soft" style="border-color: var(--line);">
+              ぜひご覧ください。会場には保護者の方の見学スペースをご用意します。小学生の方は、できるだけ保護者の方とお越しください。
+            </p>
+          </details>
+
+          <details class="glass rounded-lg">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-7 py-5 font-bold">
+              <span>発表の時間はどのくらいですか？</span>
+              <span class="material-symbols-rounded faq-icon shrink-0 text-azure transition-transform">add</span>
+            </summary>
+            <p class="border-t px-7 py-5 text-sm leading-loose text-ink-soft" style="border-color: var(--line);">
+              申込みの人数によって決まります。詳しい発表時間や順番は、お申し込みいただいた方に後日ご案内します。
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ アクセス ============ -->
+    <section id="access" class="px-5 py-24 md:py-28">
+      <div class="mx-auto max-w-[1000px]">
+        <div class="reveal text-center">
+          <p class="font-wide text-xs font-light uppercase tracking-[0.3em] text-magenta">Access</p>
+          <h2 class="mt-4 text-3xl font-black sm:text-4xl">会場へのアクセス</h2>
+        </div>
+
+        <div class="reveal glass mt-14 grid grid-cols-1 rounded-lg md:grid-cols-2">
+          <div class="relative min-h-[320px]">
+            <iframe src="https://maps.google.com/maps?q=広島大学ミライクリエ&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              class="absolute inset-0 h-full w-full border-0" allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" title="広島大学 ミライクリエの地図"></iframe>
+          </div>
+          <div class="flex flex-col gap-7 p-8 md:p-10">
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-rounded text-azure">place</span>
+              <div>
+                <p class="text-sm font-bold text-azure">会場</p>
+                <p class="mt-1.5 text-sm leading-loose text-ink-soft">
+                  広島大学 ミライクリエ<br>
+                  〒739-8511 広島県東広島市鏡山1-3-2<br>
+                  （広島大学 東広島キャンパス内）
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-rounded text-azure">directions_bus</span>
+              <div>
+                <p class="text-sm font-bold text-azure">公共交通機関</p>
+                <p class="mt-1.5 text-sm leading-loose text-ink-soft">
+                  JR西条駅からバスで約15分<br>「広大中央口」下車すぐ
+                </p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-rounded text-azure">directions_car</span>
+              <div>
+                <p class="text-sm font-bold text-azure">お車の場合</p>
+                <p class="mt-1.5 text-sm leading-loose text-ink-soft">
+                  大学構内の駐車場をご利用ください
+                </p>
+              </div>
+            </div>
+            <a href="https://maps.google.com/?q=広島大学ミライクリエ" target="_blank" rel="noopener"
+              class="mt-auto flex h-12 items-center justify-center gap-2 rounded-full border text-sm font-bold transition-colors hover:border-azure hover:text-azure"
+              style="border-color: rgb(var(--ink-mute) / .4);">
+              <span class="material-symbols-rounded text-base">map</span>
+              Google Maps で開く
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 最後のCTA ============ -->
+    <section id="entry" class="grain relative overflow-hidden border-t px-5 py-28 md:py-32" style="border-color: var(--line);">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="prism prism-1 left-[12%] top-[10%] h-[340px] w-[340px]"></div>
+        <div class="prism prism-3 right-[10%] bottom-[4%] h-[320px] w-[320px]" style="animation-delay:-9s"></div>
+      </div>
+
+      <div class="relative mx-auto max-w-[720px] text-center">
+        <div class="relative mx-auto mb-10 w-24">
+          <div class="logo-halo" aria-hidden="true"></div>
+          <img src="logo-96.png" alt="" class="relative w-full">
+        </div>
+
+        <h2 class="text-3xl font-black leading-snug sm:text-4xl">
+          つくったものを、<br>
+          <span class="iris">みんなに話しに来ませんか。</span>
+        </h2>
+        <p class="mt-7 text-base leading-loose text-ink-soft">
+          2026年12月26日（土）、広島大学ミライクリエでお待ちしています。<br class="hidden sm:block">
+          ひとりでも、友だちと一緒でも。
+        </p>
+
+        <a data-entry-link href="https://docs.google.com/forms/d/e/1FAIpQLScFohUqYuPFPi3o_BpJerpr0EkTxng1G3mWXt-u9LORaPLC_w/viewform" target="_blank" rel="noopener"
+          class="group relative mx-auto mt-11 flex h-16 w-full max-w-[380px] items-center justify-center gap-2 rounded-full bg-btn text-lg font-bold text-btn-ink transition-transform hover:scale-[1.03]">
+          <span class="absolute -inset-3 -z-10 rounded-full opacity-50 blur-xl" aria-hidden="true"
+            style="background: var(--iris);"></span>
+          参加を申し込む
+          <span class="material-symbols-rounded transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+        <p class="mt-5 text-sm text-ink-soft">
+          申込み〆切：2026年12月13日(日) 20:00 ／ 参加費無料
+        </p>
+
+        <p class="mt-12 text-sm text-ink-soft">
+          わからないことは
+          <a href="../../index.html#contact" class="font-bold text-azure underline underline-offset-4 transition-opacity hover:opacity-70">CoderDojo 西条</a>
+          までお気軽にご相談ください。
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="border-t bg-surface px-5 py-12" style="border-color: var(--line);">
+    <div class="mx-auto flex max-w-[1000px] flex-col items-center justify-between gap-8 md:flex-row">
+      <div class="flex flex-col items-center gap-2.5 md:items-start">
+        <a href="../../index.html" class="flex items-center gap-3 transition-opacity hover:opacity-70">
+          <img src="../../images/coderdojo-saijo.png" alt="" class="h-8 w-auto">
+          <span class="text-lg font-bold">CoderDojo 西条</span>
+        </a>
+        <p class="text-xs text-ink-mute">&copy; 2026 CoderDojo Saijo.</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-7 text-sm text-ink-soft">
+        <a class="transition-colors hover:text-azure" href="../../index.html">公式サイト</a>
+        <a class="transition-colors hover:text-azure" href="https://coderdojo.jp" target="_blank" rel="noopener">CoderDojo Japan</a>
+        <a class="transition-colors hover:text-azure" href="../../privacy.html">プライバシーポリシー</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ モバイル用 固定CTA ============ -->
+  <div class="fixed inset-x-0 bottom-0 z-40 border-t p-3 backdrop-blur-xl md:hidden"
+    style="border-color: var(--line); background: var(--mobilebar-bg);">
+    <a data-entry-link href="https://docs.google.com/forms/d/e/1FAIpQLScFohUqYuPFPi3o_BpJerpr0EkTxng1G3mWXt-u9LORaPLC_w/viewform" target="_blank" rel="noopener"
+      class="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-btn font-bold text-btn-ink">
+      参加を申し込む
+      <span class="material-symbols-rounded text-base">arrow_forward</span>
+    </a>
+  </div>
+  <div class="h-[76px] md:hidden" aria-hidden="true"></div>
+
+  <script>
+    // ---- 配色の切り替え ----
+    (function () {
+      const btn = document.getElementById('theme-toggle');
+      const meta = document.querySelector('meta[name="theme-color"]');
+      const COLORS = { light: '#F0F2FA', dark: '#070818' };
+
+      function apply(theme) {
+        document.documentElement.dataset.theme = theme;
+        if (meta) meta.content = COLORS[theme];
+        try { localStorage.setItem('spd26-theme', theme); } catch (e) { }
+      }
+
+      // 初期表示のテーマ名をボタンに反映
+      if (meta) meta.content = COLORS[document.documentElement.dataset.theme] || COLORS.light;
+
+      btn?.addEventListener('click', () => {
+        apply(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+      });
+    })();
+
+    // ---- 申込み〆切のカウントダウン（JST 固定） ----
+    (function () {
+      const DEADLINE = new Date('2026-12-13T20:00:00+09:00');
+      const wrap = document.getElementById('countdown');
+      const value = document.getElementById('countdown-value');
+      if (!wrap || !value) return;
+
+      function update() {
+        const diff = DEADLINE - new Date();
+        if (diff <= 0) {
+          value.textContent = '申込みの受付は終了しました';
+          return true;
+        }
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        value.textContent = days > 0 ? `申込みは あと${days}日` : `申込みは あと${hours}時間${mins}分`;
+        return false;
+      }
+
+      wrap.classList.remove('hidden');
+      wrap.classList.add('flex');
+      if (!update()) {
+        setInterval(update, 60000);
+      }
+    })();
+
+    // ---- スクロールで各セクションを出現させる ----
+    (function () {
+      const targets = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+      targets.forEach((el) => observer.observe(el));
+    })();
+  </script>
+
+</body>
+
+</html>
